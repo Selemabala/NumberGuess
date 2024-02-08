@@ -31,20 +31,17 @@ class Program
             Console.WriteLine($"{name} enter your guess");
             guess = Convert.ToInt32(Console.ReadLine());
 
-            bool correct = guess == randomNumber;
-            bool negativeNumber = guess < GUESS_START;
-            bool tooBigNumber = guess > GUESS_LIMIT;
             int closeMinus = randomNumber - guess;
             int closePlus = guess - randomNumber;
 
-            if (negativeNumber || tooBigNumber)
+            if (guess < GUESS_START || guess > GUESS_LIMIT)
             {
                 Console.WriteLine($"Please {name} the number should be within the instructions");
             }
 
-            if (correct)
+            if (guess == randomNumber)
             {
-                Console.WriteLine($"{name} you won, conglatulations");
+                Console.WriteLine($"Hey {name} you won, conglatulations");
                 return;
             }
 
@@ -55,12 +52,12 @@ class Program
 
             if (closePlus > CLOSE_GUESS && closePlus < GUESS_LIMIT)
             {
-                Console.WriteLine($"{name} that was not correct, the number is too high.");
+                Console.WriteLine($" Sorry {name} that was not correct, the number is too high.");
             }
 
             if (closeMinus > CLOSE_GUESS && guess >= GUESS_START)
             {
-                Console.WriteLine($"{name} that was not correct, the number is too low");
+                Console.WriteLine($"Sorry {name} that was not correct, the number is too low");
             }
 
             Console.WriteLine($"Hey remember this was your {trials} trial, you are remainded with {NUMBER_OF_TRIALS - trials}");
